@@ -58,6 +58,7 @@ void Lfo::Init() {
   next_random_armed_ = false;
   direction_ = true;
   hold_ = false;
+  single_cycle = true;
 }
 
 void Lfo::Step() {
@@ -65,7 +66,11 @@ void Lfo::Step() {
     phase_ += direction_ ? phase_increment_ : -phase_increment_;
 
   if (phase_ < phase_increment_) {
-    direction_ ? cycle_counter_++ : cycle_counter_--;
+    if (single_cycle) {
+      return;
+    } else {
+      direction_ ? cycle_counter_++ : cycle_counter_--;
+    }
   }
 
   divided_phase_ = phase_ / divider_ +

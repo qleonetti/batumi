@@ -154,6 +154,7 @@ class Lfo {
   bool next_random_armed_;
   Lfo* linked_;
   bool direction_, hold_;
+  bool single_cycle;
 
   /* values of the oscillators for each shape before and
    * after reset */
